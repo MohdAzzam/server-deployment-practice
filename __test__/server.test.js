@@ -1,5 +1,5 @@
 'use strict';
-//for testing 
+//for testing ci/cd
 const server = require('../server');
 const superTest=require('supertest');
 const serverRequest=superTest(server.app);

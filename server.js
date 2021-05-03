@@ -1,8 +1,19 @@
 'use strict';
 const express=require('express');
-const errorHandler = require('./handlers/500.js');
-const notFoundHandler = require('./handlers/404.js');
+const errorHandler = require('./src/error-handlers/500');
+const notFoundHandler = require('./src/error-handlers/404.js');
+const logger = require('./src/middleware/logger');
+const validatror =require('./src/middleware/validator')
 const app=express();
+
+// Global Middleware
+app.use(logger);
+app.use(express.json());
+
+app.get('/person',validatror,(req,res)=>{
+    const person =req.query.name;
+    res.json({name:person});
+})
 
 app.get('/',(req,res)=>{
     res.status(200).send('Welcom to Our Home Page');

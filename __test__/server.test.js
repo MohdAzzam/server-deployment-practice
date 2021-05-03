@@ -32,5 +32,18 @@ describe('Testing Server Moudle',()=>{
         expect(response.status).toEqual(500);
         expect(response.body).toEqual({"err": {}, "message": "Server ERROR Cannot read property 'push' of undefined", "path": "/bad-request-2", "query": {}});
     });
-
+    it('no name in the query string',async ()=>{
+        let response=await serverRequest.get('/person');
+        expect(response.status).toEqual(500);
+        expect(response.body).toEqual({"err": "no name", "message": "Server ERROR undefined", "path":"/person","query":{}});
+    });
+    it('name in the query string',async ()=>{
+        let response=await serverRequest.get('/person?name=azzam');
+        expect(response.status).toEqual(200);
+    });
+    it(' name in the query string, the output object is correct',async ()=>{
+        let response=await serverRequest.get('/person?name=azzam');
+        expect(response.status).toEqual(200);
+        expect(response.body).toEqual({name:"azzam"});
+    });
 });

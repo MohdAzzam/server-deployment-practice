@@ -1,4 +1,4 @@
-# LAB - Class 01
+# LAB - Class 02
 
 ## Project:server-deployment-practice
 
